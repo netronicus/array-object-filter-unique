@@ -1,24 +1,23 @@
 export { }
 declare global {
-    interface filterUniqueObjectInt {
+    interface FilterUniqueObjectInt {
         attribute?: string
         mutator?: any
-        attributes?: Array<{
+        attributes?: {
             attribute: string
             mutator?: any
-        }>
+        }[]
     }
     interface Array<T> {
-        filterUniqueObject(conditions:filterUniqueObjectInt): Array<T>;
+        filterUniqueObject(conditions:FilterUniqueObjectInt): T[];
     }
 }
 
 if (!Array.prototype.filterUniqueObject) {
-    Array.prototype.filterUniqueObject = function Array<T>(conditions:filterUniqueObjectInt): T[] {
+    Array.prototype.filterUniqueObject = function Array<T>(conditions:FilterUniqueObjectInt): T[] {
         const uniques: any = {};
 
-        for (let x = 0; x < this.length; x++) {
-            const s = this[x];
+        for (const s of this) {
             if (conditions.attribute) {
                 const a = conditions.mutator ? conditions.mutator(s[conditions.attribute]) : s[conditions.attribute];
                 if (!uniques[String(a)]) {
