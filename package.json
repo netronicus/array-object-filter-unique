@@ -1,6 +1,6 @@
 {
   "name": "array-object-filter-unique",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A nice array filter unique by Object attributes",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
